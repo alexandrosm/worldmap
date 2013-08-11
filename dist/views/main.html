@@ -1,0 +1,28 @@
+<svg height="442" width="863" viewbox="83 46 2529 1428" ng-mousemove="moveLens($event)">
+  <g ng-repeat="country in countries">
+    <path ng-if="country.path" ng-attr-id="{{ country.id }}" ng-attr-name="{{ country.name }}" ng-attr-transform="{{ country.transform }}" class="{{ country.class + (country.found ? ' found' : '')}}" ng-attr-d="{{ country.path }}">
+    </path>
+    <g ng-if="country.paths" ng-attr-id="{{ country.id }}" ng-attr-name="{{ country.name }}" ng-attr-transform="{{ country.transform }}" class="{{ country.class + (country.found ? ' found' : '')}}">
+      <g ng-repeat="path in country.paths">
+        <path ng-if="path.d" ng-attr-id="{{ path.id }}" ng-attr-transform="{{ path.transform }}" class="{{ path.class + (country.found ? ' found' : '')}}" ng-attr-d="{{ path.d }}">
+        </path>
+        <g ng-if="path.pathset" ng-attr-id="{{ path.id }}" ng-attr-transform="{{ path.transform }}" class="{{ path.class + (country.found ? ' found' : '')}}">
+          <path ng-repeat="part in path.pathset" ng-attr-id="{{ part.id }}" ng-attr-transform="{{ part.transform }}" class="{{ part.class + (country.found ? ' found' : '')}}" ng-attr-d="{{ part.d }}">
+          </path>
+        </g>
+      </g>
+    </g>
+    <g ng-if="country.pathset" ng-attr-id="{{ country.id }}" ng-attr-name="{{ country.name }}" ng-attr-transform="{{ country.transform }}" class="{{ country.class + (country.found ? ' found' : '')}}">
+      <g ng-attr-id="{{ country.pathset.id }}" ng-attr-name="{{ country.pathset.name }}" ng-attr-transform="{{ country.pathset.transform }}" class="{{ country.pathset.class + (country.found ? ' found' : '')}}">
+        <path ng-repeat="part in country.pathset.paths" ng-attr-id="{{ part.id }}" ng-attr-transform="{{ part.transform }}" class="{{ part.class + (country.found ? ' found' : '')}}" ng-attr-d="{{ part.d }}">
+        </path>
+      </g>
+    </g>
+  </g>
+  <!--<circle ng-attr-cx="{{ lensX }}" ng-attr-cy="{{ lensY }}" r="300px" fill="none" stroke="#000000" stroke-width="1"></circle>-->
+</svg>
+<div style="width:100%; text-align: center">
+  <input type="text" ng-model="selector" ng-change="findCountry()">
+  <div>Countries Found: {{ foundCounter }} / {{ countries.length }}</div>
+  <timer interval="1000" countdown="900">Time left: {{minutes}} minutes, {{seconds}} seconds</timer>
+</div>
