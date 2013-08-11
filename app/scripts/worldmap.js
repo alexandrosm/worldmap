@@ -10986,4 +10986,6 @@ countries = [
             "cy": "840.57922"
         }
     }
-]
+];
+
+//make sure to have semicolon and newline here.

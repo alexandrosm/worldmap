@@ -264,18 +264,6 @@ module.exports = function (grunt) {
           src: [
             'generated/*'
           ]
-        }, {
-          expand: true,
-          dest: '<%= yeoman.dist %>',
-          cwd: 'heroku',
-          src: '*',
-          rename: function (dest, src) {
-            var path = require('path');
-            if (src === 'distpackage.json') {
-              return path.join(dest, 'package.json');
-            }
-            return path.join(dest, src);
-          }
         }]
       }
     },
@@ -310,19 +298,19 @@ module.exports = function (grunt) {
     ngmin: {
       dist: {
         files: [{
-          expand: true,
-          cwd: '<%= yeoman.dist %>/scripts',
-          src: '*.js',
-          dest: '<%= yeoman.dist %>/scripts'
+//          expand: true,
+//          cwd: '<%= yeoman.dist %>/scripts',
+//          src: '*.js',
+//          dest: '<%= yeoman.dist %>/scripts'
         }]
       }
     },
     uglify: {
       dist: {
         files: {
-          '<%= yeoman.dist %>/scripts/scripts.js': [
-            '<%= yeoman.dist %>/scripts/scripts.js'
-          ]
+//          '<%= yeoman.dist %>/scripts/scripts.js': [
+//            '<%= yeoman.dist %>/scripts/scripts.js'
+//          ]
         }
       }
     }
@@ -333,7 +321,7 @@ module.exports = function (grunt) {
       return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
     }
 
-    grunt.task.run([
+    return grunt.task.run([
       'clean:server',
       'concurrent:server',
       'connect:livereload',
