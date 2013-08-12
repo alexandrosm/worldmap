@@ -1,3 +1,4 @@
+<div class="logo">worldmap.io</div>
 <svg height="442" width="863" viewbox="83 46 2529 1428" ng-mousemove="moveLens($event)">
   <g ng-repeat="country in countries">
     <path ng-if="country.path" ng-attr-id="{{ country.id }}" ng-attr-name="{{ country.name }}" ng-attr-transform="{{ country.transform }}" class="{{ country.class + (country.found ? ' found' : '')}}" ng-attr-d="{{ country.path }}">
@@ -24,5 +25,12 @@
 <div style="width:100%; text-align: center">
   <input type="text" ng-model="selector" ng-change="findCountry()">
   <div>Countries Found: {{ foundCounter }} / {{ countries.length }}</div>
-  <timer interval="1000" countdown="900">Time left: {{minutes}} minutes, {{seconds}} seconds</timer>
+  <div>
+    <timer interval="1000" auto-start="false" countdown="900">
+      Time left: {{minutes}} minutes, {{seconds}} seconds
+    </timer>
+  </div>
+  <button type="button" class="btn btn-primary" ng-click="startTimer()">Start</button>
+  <button type="button" class="btn btn-primary" ng-click="stopTimer()">Pause</button>
+  <button type="button" class="btn btn-primary" ng-click="resumeTimer()">Resume</button>
 </div>
