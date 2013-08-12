@@ -4,6 +4,19 @@ angular.module('worldmapApp')
   .controller 'MainCtrl', ['$scope', ($scope) ->
     $scope.countries = countries
 
+    $scope.timerRunning = true
+
+    $scope.startTimer = ->
+      $scope.$broadcast('timer-start')
+      $scope.timerRunning = true
+
+    $scope.stopTimer = ->
+      $scope.$broadcast('timer-stop')
+      $scope.timerRunning = false
+
+    $scope.$on 'timer-stopped', (event, data) ->
+      console.log 'Timer Stopped - data = ', data
+
     $scope.foundCounter = 0
 
     $scope.findCountry = ->

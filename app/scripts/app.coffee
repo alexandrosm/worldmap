@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('worldmapApp', ['timer'])
+angular.module('worldmapApp', ['timer', 'ui.bootstrap'])
   .config ['$routeProvider', ($routeProvider) ->
     $routeProvider
       .when '/',
