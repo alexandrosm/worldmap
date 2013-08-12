@@ -1,6 +1,0 @@
-logs/*
-!.gitkeep
-.idea
-*.iml
-node_modules/
-build/

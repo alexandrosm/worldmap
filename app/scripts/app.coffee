@@ -1,11 +1,10 @@
 'use strict'
 
 angular.module('worldmapApp', ['timer', 'ui.bootstrap'])
-  .config ['$routeProvider', ($routeProvider) ->
+  .config ($routeProvider) ->
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
       .otherwise
         redirectTo: '/'
-  ]

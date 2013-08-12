@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('worldmapApp')
-  .controller 'MainCtrl', ['$scope', ($scope) ->
+  .controller 'MainCtrl', ($scope) ->
     $scope.timerRunning = false
 
     $scope.startTimer = ->
@@ -45,4 +45,3 @@ angular.module('worldmapApp')
     $scope.moveLens = (evt) ->
       $scope.lensX = evt.clientX * 3
       $scope.lensY = evt.clientY * 3
-  ]

@@ -299,19 +299,19 @@ module.exports = function (grunt) {
     ngmin: {
       dist: {
         files: [{
-//          expand: true,
-//          cwd: '<%= yeoman.dist %>/scripts',
-//          src: '*.js',
-//          dest: '<%= yeoman.dist %>/scripts'
+          expand: true,
+          cwd: '<%= yeoman.dist %>/scripts',
+          src: '*.js',
+          dest: '<%= yeoman.dist %>/scripts'
         }]
       }
     },
     uglify: {
       dist: {
         files: {
-//          '<%= yeoman.dist %>/scripts/scripts.js': [
-//            '<%= yeoman.dist %>/scripts/scripts.js'
-//          ]
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+            '<%= yeoman.dist %>/scripts/scripts.js'
+          ]
         }
       }
     }
