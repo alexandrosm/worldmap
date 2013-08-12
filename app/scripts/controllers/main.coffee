@@ -3,18 +3,27 @@
 angular.module('worldmapApp')
   .controller 'MainCtrl', ($scope) ->
     $scope.timerRunning = false
+    $scope.gameActive = false
 
-    $scope.startTimer = ->
+    $scope.startGame = ->
       $scope.$broadcast('timer-start')
       $scope.timerRunning = true
+      $scope.gameActive = true
 
-    $scope.stopTimer = ->
+    $scope.pauseTimer = ->
       $scope.$broadcast('timer-stop')
       $scope.timerRunning = false
+      $scope.gameActive = true
 
     $scope.resumeTimer = ->
       $scope.$broadcast('timer-resume')
       $scope.timerRunning = true
+      $scope.gameActive = true
+
+    $scope.endGame = ->
+      $scope.$broadcast('timer-stop')
+      $scope.timerRunning = false
+      $scope.gameActive = false
 
     $scope.$on 'timer-stopped', (event, data) ->
       console.log 'Timer Stopped - data = ', data
