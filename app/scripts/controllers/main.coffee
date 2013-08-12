@@ -2,9 +2,7 @@
 
 angular.module('worldmapApp')
   .controller 'MainCtrl', ['$scope', ($scope) ->
-    $scope.countries = countries
-
-    $scope.timerRunning = true
+    $scope.timerRunning = false
 
     $scope.startTimer = ->
       $scope.$broadcast('timer-start')
@@ -14,8 +12,14 @@ angular.module('worldmapApp')
       $scope.$broadcast('timer-stop')
       $scope.timerRunning = false
 
+    $scope.resumeTimer = ->
+      $scope.$broadcast('timer-resume')
+      $scope.timerRunning = true
+
     $scope.$on 'timer-stopped', (event, data) ->
       console.log 'Timer Stopped - data = ', data
+
+    $scope.countries = countries
 
     $scope.foundCounter = 0
 

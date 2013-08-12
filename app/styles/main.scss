@@ -2,6 +2,7 @@ $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
 @import "bootstrap-sass/lib/bootstrap";
+@import "compass/css3/transform";
 
 /* Put your CSS here */
 html, body {
@@ -12,6 +13,13 @@ body {
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
+}
+
+.logo {
+  font-family: 'Stardos Stencil', cursive;
+  font-size: 56px;
+  @include transform-origin(8%);
+  @include rotate(-7deg);
 }
 
 /*
