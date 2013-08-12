@@ -25,12 +25,13 @@
 <div style="width:100%; text-align: center">
   <input type="text" ng-model="selector" ng-change="findCountry()">
   <div>Countries Found: {{ foundCounter }} / {{ countries.length }}</div>
-  <div>
+  <div ng-show="gameActive">
     <timer interval="1000" auto-start="false" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
     </timer>
   </div>
-  <button type="button" class="btn btn-primary" ng-click="startTimer()">Start</button>
-  <button type="button" class="btn btn-primary" ng-click="stopTimer()">Pause</button>
-  <button type="button" class="btn btn-primary" ng-click="resumeTimer()">Resume</button>
+  <button ng-if="!timerRunning && !gameActive" type="button" class="btn btn-primary" ng-click="startGame()">Start</button>
+  <button ng-if="timerRunning" type="button" class="btn btn-primary" ng-click="pauseTimer()">Pause</button>
+  <button ng-if="!timerRunning && gameActive" type="button" class="btn btn-primary" ng-click="resumeTimer()">Resume</button>
+  <button ng-if="gameActive" type="button" class="btn btn-primary" ng-click="endGame()">Quit</button>
 </div>
