@@ -36,13 +36,14 @@ angular.module('worldmapApp')
       $scope.shouldBeOpen = true
 
     $scope.findCountry = ->
+      targetName = $scope.selector.toLowerCase().replace(/^st\. /, 'st ').replace(/^st /, 'saint ')
       country = _.find $scope.countries, (country) ->
         found = false
         if country.name?
-          found = (country.name.toLowerCase() == $scope.selector.toLowerCase())
+          found = (country.name.toLowerCase() == targetName)
         if not found and country.alternate_names?
           found = _.any(_.map(country.alternate_names, (name)->
-            $scope.selector.toLowerCase() == name.toLowerCase()
+           targetName == name.toLowerCase()
           ), Boolean)
         return found
 
