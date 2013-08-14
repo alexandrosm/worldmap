@@ -2,18 +2,19 @@
   "name": "worldmap",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "PatternConsulting/bower-angular#1.1.5",
+    "angular": "angular/bower-angular#1.2.0rc1",
     "json3": "~3.2.4",
     "jquery": "~1.9.1",
     "bootstrap-sass": "~2.3.1",
     "es5-shim": "~2.0.8",
-    "angular-resource": "PatternConsulting/bower-angular#1.1.5",
-    "angular-cookies": "PatternConsulting/bower-angular#1.1.5",
-    "angular-sanitize": "PatternConsulting/bower-angular#1.1.5",
-    "angular-timer": "~1.0.0"
+    "angular-resource": "angular/bower-angular-resource#1.2.0rc1",
+    "angular-route": "angular/bower-angular-route#1.2.0rc1",
+    "angular-cookies": "angular/bower-angular-cookies#1.2.0rc1",
+    "angular-sanitize": "angular/bower-angular-sanitize#1.2.0rc1",
+    "angular-bootstrap": "~0.5.0"
   },
   "devDependencies": {
-    "angular-mocks": "PatternConsulting/bower-angular#1.1.5",
-    "angular-scenario": "PatternConsulting/bower-angular#1.1.5"
+    "angular-mocks": "angular/bower-angular-mocks#1.2.0rc1",
+    "angular-scenario": "angular/bower-angular-scenario#1.2.0rc1"
   }
 }

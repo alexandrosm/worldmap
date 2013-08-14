@@ -1,5 +1,5 @@
 angular.module('timer', [])
-    .directive('timer', ['$timeout', '$compile', function ($timeout, $compile) {
+    .directive('timer', ['$compile', function ($compile) {
         return  {
             restrict: 'E',
             replace: false,
@@ -7,9 +7,9 @@ angular.module('timer', [])
                 interval: '=interval',
                 startTimeAttr: '=startTime',
                 countdownattr: '=countdown',
-                autoStart: '=autoStart'
+                autoStart: '=autostart'
             },
-            controller: function ($scope, $element) {
+            controller: function ($scope, $element, $attrs) {
                 if ($element.html().trim().length === 0) {
                     $element.append($compile('<span>{{millis}}</span>')($scope));
                 }
@@ -31,6 +31,10 @@ angular.module('timer', [])
                     $scope.stop();
                 });
 
+                $scope.$on('timer-end', function () {
+                    $scope.end();
+                });
+
                 function resetTimeout() {
                     if ($scope.timeoutId) {
                         clearTimeout($scope.timeoutId);
@@ -46,7 +50,11 @@ angular.module('timer', [])
 
                 $scope.resume = $element[0].resume = function () {
                     resetTimeout();
+                    if($scope.countdownattr){
+                        $scope.countdown += 1;
+                    }
                     $scope.startTime = new Date() - ($scope.stoppedTime - $scope.startTime);
+                    console.log($scope.startTime);
                     tick();
                 };
 
@@ -55,6 +63,15 @@ angular.module('timer', [])
                     resetTimeout();
                     $scope.$emit('timer-stopped', {millis: $scope.millis, seconds: $scope.seconds, minutes: $scope.minutes, hours: $scope.hours, days: $scope.days});
                     $scope.timeoutId = null;
+                };
+
+                $scope.end = $element[0].stop = function () {
+                    resetTimeout();
+                    $scope.startTime = null;
+                    $scope.timeoutId = null;
+                    $scope.countdown = $scope.countdownattr && parseInt($scope.countdownattr, 10) > 0 ? parseInt($scope.countdownattr, 10) : undefined;
+                    $scope.isRunning = false;
+                    $scope.$emit('timer-ended', {millis: $scope.millis, seconds: $scope.seconds, minutes: $scope.minutes, hours: $scope.hours, days: $scope.days});
                 };
 
                 $element.bind('$destroy', function () {
@@ -68,11 +85,20 @@ angular.module('timer', [])
                     $scope.days = Math.floor((($scope.millis / (1000 * 60 * 60)) / 24));
                 }
 
+                //determine initial values of time units
+                if($scope.countdownattr){
+                    $scope.millis = $scope.countdownattr * 1000
+                } else {
+                    $scope.millis = 0
+                }
+                calculateTimeUnits()
+
                 var tick = function () {
 
                     $scope.millis = new Date() - $scope.startTime;
+                    adjustment = $scope.millis % 1000;
 
-                    if ($scope.countdown > 0) {
+                    if ($scope.countdownattr) {
                         $scope.millis = $scope.countdown * 1000;
                     }
 
@@ -81,7 +107,8 @@ angular.module('timer', [])
                         $scope.countdown--;
                     }
                     else if ($scope.countdown <= 0) {
-                        $scope.stop();
+                        console.log($scope.millis);
+                        $scope.end();
                         return;
                     }
 
@@ -89,7 +116,7 @@ angular.module('timer', [])
                     $scope.timeoutId = setTimeout(function () {
                         tick();
                         $scope.$apply();
-                    }, $scope.interval);
+                    }, $scope.interval - adjustment);
 
                     $scope.$emit('timer-tick', {timeoutId: $scope.timeoutId, millis: $scope.millis});
                 };
