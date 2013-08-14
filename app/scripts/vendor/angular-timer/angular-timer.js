@@ -72,6 +72,11 @@ angular.module('timer', [])
                     $scope.countdown = $scope.countdownattr && parseInt($scope.countdownattr, 10) > 0 ? parseInt($scope.countdownattr, 10) : undefined;
                     $scope.isRunning = false;
                     $scope.$emit('timer-ended', {millis: $scope.millis, seconds: $scope.seconds, minutes: $scope.minutes, hours: $scope.hours, days: $scope.days});
+                    if($scope.countdownattr){
+                        $scope.millis = 0;
+                        calculateTimeUnits();
+                        calculateTimeUnits();
+                    }
                 };
 
                 $element.bind('$destroy', function () {

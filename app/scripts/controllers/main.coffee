@@ -19,7 +19,7 @@ angular.module('worldmapApp')
       $scope.timerRunning = true
 
     $scope.endGame = ->
-      $scope.$broadcast('timer-stop')
+      $scope.$broadcast('timer-end')
       $scope.gameActive = false
 
     $scope.$on 'timer-stopped', (event, data) ->
@@ -57,3 +57,17 @@ angular.module('worldmapApp')
     $scope.moveLens = (evt) ->
       $scope.lensX = evt.clientX * 3
       $scope.lensY = evt.clientY * 3
+
+  .controller 'ModalCtrl', ($scope) ->
+    $scope.open = ->
+      $scope.shouldBeOpen = true
+
+    $scope.close = ->
+      $scope.closeMsg = 'I was closed at: ' + new Date()
+      $scope.shouldBeOpen = false
+
+    $scope.items = ['item1', 'item2']
+
+    $scope.opts =
+      backdropFade: true
+      dialogFade: true
