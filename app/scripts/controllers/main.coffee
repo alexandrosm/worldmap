@@ -2,8 +2,13 @@
 
 angular.module('worldmapApp')
   .controller 'MainCtrl', ($scope) ->
+    # initialisations
     $scope.timerRunning = false
     $scope.gameActive = false
+    $scope.countries = countries
+    $scope.foundCounter = 0
+
+    # parameters
     $scope.gameDuration = 9
 
     $scope.startGame = ->
@@ -24,16 +29,11 @@ angular.module('worldmapApp')
 
     $scope.$on 'timer-stopped', (event, data) ->
       $scope.timerRunning = false
-      console.log 'Timer Stopped - data = ', data
 
     $scope.$on 'timer-ended', (event, data) ->
       $scope.timerRunning = false
       $scope.gameActive = false
-      console.log 'Timer Ended - data = ', data
-
-    $scope.countries = countries
-
-    $scope.foundCounter = 0
+      $scope.shouldBeOpen = true
 
     $scope.findCountry = ->
       country = _.find $scope.countries, (country) ->
@@ -58,12 +58,7 @@ angular.module('worldmapApp')
       $scope.lensX = evt.clientX * 3
       $scope.lensY = evt.clientY * 3
 
-  .controller 'ModalCtrl', ($scope) ->
-    $scope.open = ->
-      $scope.shouldBeOpen = true
-
     $scope.close = ->
-      $scope.closeMsg = 'I was closed at: ' + new Date()
       $scope.shouldBeOpen = false
 
     $scope.items = ['item1', 'item2']

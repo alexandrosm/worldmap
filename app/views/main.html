@@ -73,9 +73,7 @@
   <button ng-if="timerRunning" type="button" class="btn btn-primary" ng-click="pauseTimer()">Pause</button>
   <button ng-if="!timerRunning && gameActive" type="button" class="btn btn-primary" ng-click="resumeTimer()">Resume</button>
   <button ng-if="gameActive" type="button" class="btn btn-primary" ng-click="endGame()">Quit</button>
-</div>
-<div ng-controller="ModalCtrl">
-  <button class="btn" ng-click="open()">Open me!</button>
+
   <div modal="shouldBeOpen" close="close()" options="opts">
     <div class="modal-header">
       <h3>I'm a modal!</h3>
