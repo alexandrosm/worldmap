@@ -81,6 +81,7 @@ countries = [
         "id": "gp",
         "class": "gp",
         "name": "Guadeloupe",
+        "dependencyOf": "France",
         "pathset": {
             "id": "gp-",
             "class": "landxx coastxx",
@@ -111,6 +112,7 @@ countries = [
         "id": "mq",
         "class": "mq",
         "name": "Martinique",
+        "dependencyOf": "France",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -129,6 +131,7 @@ countries = [
         "id": "re",
         "class": "re",
         "name": "Reunion",
+        "dependencyOf": "France",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -147,6 +150,7 @@ countries = [
         "id": "yt",
         "class": "yt",
         "name": "Mayotte",
+        "dependencyOf": "France",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -164,6 +168,7 @@ countries = [
     {
         "id": "gf",
         "name": "French Guiana",
+        "dependencyOf": "France",
         "class": "landxx gf",
         "path": "M 853.32629,739.43755 C 854.61429,739.37755 855.64229,737.16955 856.08129,736.20055 856.89929,734.39155 856.09329,732.37855 857.32729,730.73055 858.79029,728.77755 857.44629,727.33755 856.20029,725.78255 854.90829,724.16955 854.96029,721.28955 854.83629,719.32155 854.69229,717.02855 855.02629,715.72555 856.69929,714.12855 857.32229,713.53355 858.09829,712.87655 858.29829,711.99755 858.55729,710.85855 858.85129,709.43555 860.46629,710.04555 861.51429,710.44155 862.23329,711.28955 863.34729,711.59455 864.55029,711.92555 866.01129,711.90655 867.02929,712.72055 868.22329,713.67755 869.81029,717.32255 871.68529,717.18955 871.37029,717.65155 871.15429,718.15555 871.03629,718.70255 871.56829,716.30655 875.67329,720.41755 873.33629,722.01455 874.46829,721.59755 873.81029,720.53955 874.37429,719.78555 875.23029,718.63955 875.89529,721.31055 875.96129,721.87955 876.27329,724.57755 874.20329,727.43355 872.80029,729.58155 871.18829,732.04955 870.06729,734.13855 869.01629,736.91955 868.62629,737.95155 868.12329,738.82455 867.25629,739.52655 866.89629,739.81855 866.25129,740.49055 865.77729,740.61555 864.99629,740.82255 864.38129,740.19755 863.54629,740.59155 863.89029,739.61055 863.27529,739.60655 862.53829,739.83455 861.50829,740.15355 860.62829,739.73455 859.64929,739.40355 859.15529,739.23655 857.23429,740.62855 856.92729,740.99355 856.35729,741.67055 853.70329,739.83455 853.32629,739.43755"
     },
@@ -2367,6 +2372,7 @@ countries = [
         "id": "gl",
         "class": "landxx coastxx gl",
         "name": "Greenland",
+        "dependencyOf": "Denmark",
         "paths": [
             {
                 "id": "path4242",
@@ -4703,6 +4709,7 @@ countries = [
         "id": "hk",
         "class": "hk",
         "name": "Hong Kong",
+        "dependencyOf": "China",
         "pathset": {
             "id": "hk-",
             "class": "landxx coastxx",
@@ -4733,6 +4740,7 @@ countries = [
         "id": "mo",
         "class": "mo",
         "name": "Macao",
+        "dependencyOf": "China",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -7268,6 +7276,7 @@ countries = [
     {
         "id": "bq",
         "name": "Bonaire, Sint Eustatius and Saba",
+        "dependencyOf": "Netherlands",
         "paths": [
             {
                 "class": "coastxx bq-",
@@ -8647,6 +8656,7 @@ countries = [
         "transform": "translate(-29.9017,-45.0745)",
         "class": "antxx tf",
         "name": "French Southern Territories",
+        "dependencyOf": "France",
         "paths": [
             {
                 "id": "tf-",
@@ -9184,6 +9194,7 @@ countries = [
         "id": "nc",
         "class": "nc",
         "name": "New Caledonia",
+        "dependencyOf": "France",
         "pathset": {
             "id": "nc-",
             "class": "landxx coastxx",
@@ -9494,6 +9505,7 @@ countries = [
         "id": "fk",
         "class": "fk",
         "name": "Falkland Islands",
+        "dependencyOf": "United Kingdom",
         "alternate_names": ["Falklands", "Malvinas"],
         "pathset": {
             "id": "fk-",
@@ -9545,6 +9557,7 @@ countries = [
         "id": "gs",
         "class": "gs",
         "name": "South Georgia and the South Sandwich Islands",
+        "dependencyOf": "United Kingdom",
         "pathset": {
             "id": "gs-",
             "class": "antxx",
@@ -9644,6 +9657,7 @@ countries = [
         "id": "pr",
         "class": "pr",
         "name": "Puerto Rico",
+        "dependencyOf": "United States",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -9790,6 +9804,7 @@ countries = [
         "id": "pf",
         "class": "pf",
         "name": "French Polynesia",
+        "dependencyOf": "France",
         "pathset": {
             "id": "pf-",
             "class": "landxx coastxx",
@@ -9932,6 +9947,7 @@ countries = [
         "id": "fo",
         "class": "fo",
         "name": "Faroe Islands",
+        "dependencyOf": "Denmark",
         "pathset": {
             "id": "fo-",
             "class": "landxx coastxx",
@@ -10000,6 +10016,7 @@ countries = [
         "id": "vi",
         "class": "vi",
         "name": "U.S. Virgin Islands",
+        "dependencyOf": "United States",
         "alternate_names": ["US Virgin Islands"],
         "pathset": {
             "id": "vi-",
@@ -10027,6 +10044,7 @@ countries = [
         "id": "cw",
         "class": "cw",
         "name": "Curacao",
+        "dependencyOf": "Netherlands",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10045,6 +10063,7 @@ countries = [
         "id": "sx",
         "class": "sx",
         "name": "Sint Maarten",
+        "dependencyOf": "Netherlands",
         "paths": [
             {
                 "class": "landxx",
@@ -10187,6 +10206,7 @@ countries = [
         "id": "mp",
         "class": "mp",
         "name": "Northern Mariana Islands",
+        "dependencyOf": "United States",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10285,6 +10305,7 @@ countries = [
         "id": "tc",
         "class": "tc",
         "name": "Turks and Caicos Islands",
+        "dependencyOf": "United Kingdom",
         "pathset": {
             "id": "tc-",
             "class": "landxx coastxx",
@@ -10405,6 +10426,7 @@ countries = [
         "id": "ky",
         "class": "ky",
         "name": "Cayman Islands",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10449,6 +10471,7 @@ countries = [
         "id": "ms",
         "class": "ms",
         "name": "Montserrat",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10467,6 +10490,7 @@ countries = [
         "id": "bl",
         "class": "bl eu",
         "name": "Saint Barthelemy",
+        "dependencyOf": "France",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10485,6 +10509,7 @@ countries = [
         "id": "nu",
         "class": "nu",
         "name": "Niue",
+        "dependencyOf": "New Zealand",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10503,6 +10528,7 @@ countries = [
         "id": "pm",
         "class": "pm",
         "name": "Saint Pierre and Miquelon",
+        "dependencyOf": "France",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10521,6 +10547,7 @@ countries = [
         "id": "ck",
         "class": "ck",
         "name": "Cook Islands",
+        "dependencyOf": "New Zealand",
         "pathset": {
             "id": "ck-",
             "class": "landxx coastxx",
@@ -10565,6 +10592,7 @@ countries = [
         "id": "as",
         "class": "as",
         "name": "American Samoa",
+        "dependencyOf": "United States",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10602,6 +10630,7 @@ countries = [
         "id": "aw",
         "class": "aw",
         "name": "Aruba",
+        "dependencyOf": "Netherlands",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10638,6 +10667,7 @@ countries = [
         "id": "vg",
         "class": "vg",
         "name": "British Virgin Islands",
+        "dependencyOf": "United Kingdom",
         "alternate_names": ["BVI"],
         "pathset": {
             "id": "vg-",
@@ -10665,6 +10695,7 @@ countries = [
         "id": "sh",
         "class": "sh",
         "name": "Saint Helena, Ascension and Tristan Da Cunha",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10683,6 +10714,7 @@ countries = [
         "id": "je",
         "class": "je",
         "name": "Jersey",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10701,6 +10733,7 @@ countries = [
         "id": "ai",
         "class": "ai",
         "name": "Anguilla",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10719,6 +10752,7 @@ countries = [
         "id": "mf",
         "class": "eu mf",
         "name": "Saint Martin",
+        "dependencyOf": "France",
         "paths": [
             {
                 "class": "landxx",
@@ -10737,6 +10771,7 @@ countries = [
         "id": "gg",
         "class": "gg",
         "name": "Guernsey",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10827,6 +10862,7 @@ countries = [
         "id": "gi",
         "class": "eu gi",
         "name": "Gibraltar",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx",
@@ -10845,6 +10881,7 @@ countries = [
         "id": "pn",
         "class": "pn",
         "name": "Pitcairn",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10900,6 +10937,7 @@ countries = [
         "id": "im",
         "class": "im",
         "name": "Isle of Man",
+        "dependencyOf": "United Kingdom",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10918,6 +10956,7 @@ countries = [
         "id": "gu",
         "class": "gu",
         "name": "Guam",
+        "dependencyOf": "United States",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10954,6 +10993,7 @@ countries = [
         "id": "nf",
         "class": "nf",
         "name": "Norfolk Island",
+        "dependencyOf": "Australia",
         "paths": [
             {
                 "class": "landxx coastxx",
@@ -10972,6 +11012,7 @@ countries = [
         "id": "tk",
         "class": "tk",
         "name": "Tokelau",
+        "dependencyOf": "New Zealand",
         "paths": [
             {
                 "class": "landxx coastxx",
