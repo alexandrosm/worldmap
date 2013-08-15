@@ -3,6 +3,7 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
 @import "bootstrap-sass/lib/bootstrap";
 @import "compass/css3/transform";
+@import "compass/css3/columns";
 
 /* Put your CSS here */
 html, body {
@@ -20,6 +21,15 @@ body {
   font-size: 56px;
   @include transform-origin(8%);
   @include rotate(-7deg);
+}
+
+.country-list {
+    @include column-count(3);
+}
+
+.main-container {
+  width:100%;
+  text-align: center;
 }
 
 /*

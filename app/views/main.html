@@ -61,7 +61,7 @@
   </g>
   <!--<circle ng-attr-cx="{{ lensX }}" ng-attr-cy="{{ lensY }}" r="300px" fill="none" stroke="#000000" stroke-width="1"></circle>-->
 </svg>
-<div style="width:100%; text-align: center">
+<div class="main-container">
   <input ng-show="gameActive" ng-disabled="!timerRunning" type="text" ng-model="selector" ng-change="findCountry()">
   <div>Countries Found: {{ foundCounter }} / {{ countries.length }}</div>
   <div>
@@ -76,15 +76,18 @@
 
   <div modal="shouldBeOpen" close="close()" options="opts">
     <div class="modal-header">
-      <h3>I'm a modal!</h3>
+      <h3>Game over!</h3>
     </div>
+    Here's what you missed:
     <div class="modal-body">
-      <ul>
-        <li ng-repeat="item in items">{{item}}</li>
-      </ul>
+      <div class="country-list">
+        <ul>
+          <li ng-repeat="country in countriesMissed"><a href="http://en.wikipedia.org/wiki/{{ country.name }}">{{country.name}}</a></li>
+        </ul>
+      </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+      <button class="btn btn-warning cancel" ng-click="close()">Cool!</button>
     </div>
   </div>
 </div>

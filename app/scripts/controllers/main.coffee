@@ -34,6 +34,7 @@ angular.module('worldmapApp')
       $scope.timerRunning = false
       $scope.gameActive = false
       $scope.shouldBeOpen = true
+      $scope.countriesMissed = _.where($scope.countries, {found:undefined})[1..]
 
     $scope.findCountry = ->
       targetName = $scope.selector.toLowerCase().replace(/^st\. /, 'st ').replace(/^st /, 'saint ')
