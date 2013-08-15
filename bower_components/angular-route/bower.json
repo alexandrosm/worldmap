@@ -1,7 +1,7 @@
 {
-  "name": "angular-scenario",
+  "name": "angular-route",
   "version": "1.2.0rc1",
-  "main": "./angular-scenario.js",
+  "main": "./angular-route.js",
   "dependencies": {
     "angular": "1.2.0rc1"
   }

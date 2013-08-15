@@ -1,14 +1,16 @@
 {
-  "name": "AngularJS",
-  "version": "1.1.5",
-  "dependencies": {},
-  "homepage": "https://github.com/PatternConsulting/bower-angular",
-  "_release": "1.1.5",
-  "_resolution": {
-    "type": "version",
-    "tag": "1.1.5",
-    "commit": "6284fba0b479d575f2ed116915bc792999bcaee2"
+  "name": "angular-cookies",
+  "main": "./angular-cookies.js",
+  "dependencies": {
+    "angular": "1.2.0rc1"
   },
-  "_source": "git://github.com/PatternConsulting/bower-angular.git",
-  "_target": "1.1.5"
+  "homepage": "https://github.com/angular/bower-angular-cookies",
+  "_release": "1.2.0rc1",
+  "_resolution": {
+    "type": "tag",
+    "tag": "1.2.0rc1",
+    "commit": "0aa0e542c945f72b6d52ef8e311e904f20dba0df"
+  },
+  "_source": "git://github.com/angular/bower-angular-cookies.git",
+  "_target": "1.2.0rc1"
 }
