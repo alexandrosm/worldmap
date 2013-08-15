@@ -4,6 +4,12 @@
     width="863"
     viewBox="83 46 2529 1428"
     ng-mousemove="moveLens($event)">
+  <path
+      ng-if="ocean.path"
+      ng-attr-id="{{ ocean.id }}"
+      class="{{ ocean.class }}"
+      ng-attr-d="{{ ocean.path }}">
+  </path>
   <g ng-repeat="country in countries">
     <path
       ng-if="country.path"
@@ -63,19 +69,19 @@
 </svg>
 <div class="main-container">
   <input ng-show="gameActive" ng-disabled="!timerRunning" type="text" ng-model="selector" ng-change="findCountry()">
-  <div>Countries Found: {{ foundCounter }} / {{ countries.length }}</div>
+  <div>Countries Found: {{ _.filter(countries, {found: true}).length }} / {{ countries.length }}</div>
   <div>
     <timer autostart="false" interval="1000" countdown="gameDuration">
       Time left: {{minutes}} minutes, {{seconds}} seconds
     </timer>
   </div>
   <button ng-if="!timerRunning && !gameActive" type="button" class="btn btn-primary" ng-click="startGame()">Start</button>
-  <button ng-if="timerRunning" type="button" class="btn btn-primary" ng-click="pauseTimer()">Pause</button>
+  <button ng-if="timerRunning" type="button" class="btn btn-primary" ng-click="broadcast('timer-stop')">Pause</button>
   <button ng-if="!timerRunning && gameActive" type="button" class="btn btn-primary" ng-click="resumeTimer()">Resume</button>
   <button ng-if="gameActive" type="button" class="btn btn-primary" ng-click="endGame()">Quit</button>
 
-  <div modal="shouldBeOpen" close="close()" options="opts">
-    <div ng-if="countriesMissed != []">
+  <div modal="modalOpen" close="close()" options="opts">
+    <div ng-if="_.where(countries, {found: false}) != []">
       <div class="modal-header">
         <h3>Game over!</h3>
       </div>
@@ -83,7 +89,7 @@
         Here's what you missed:
         <div class="country-list">
           <ul>
-            <li ng-repeat="country in countriesMissed"><a href="http://en.wikipedia.org/wiki/{{ country.name }}">{{country.name}}</a></li>
+            <li ng-repeat="country in _.where(countries, {found: false})"><a href="http://en.wikipedia.org/wiki/{{ country.name }}">{{country.name}}</a></li>
           </ul>
         </div>
       </div>
@@ -91,7 +97,7 @@
         <button class="btn btn-warning cancel" ng-click="initGame()">Close</button>
       </div>
     </div>
-    <div ng-if="countriesMissed == []">
+    <div ng-if="_.where(countries, {found: false}) == []">
       <div class="modal-header">
         <h3>Epic Victory!</h3>
       </div>

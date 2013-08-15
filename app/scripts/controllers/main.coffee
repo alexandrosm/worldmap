@@ -1,15 +1,20 @@
-'use strict'
-
 angular.module('worldmapApp')
   .controller 'MainCtrl', ($scope) ->
-    # initialisations
-    $scope.timerRunning = false
-    $scope.gameActive = false
-    $scope.countries = countries
-    $scope.foundCounter = 0
+    $scope._ = _
+    $scope.broadcast = $scope.$broadcast
+    $scope.opts = {backdropFade: true, dialogFade: true}
+    $scope.ocean = ocean
 
-    # parameters
-    $scope.gameDuration = 900
+    $scope.initGame = ->
+      # initialisations
+      $scope.countries = (_.extend(c, {found:false}) for c in countries)
+
+      $scope.timerRunning = false
+      $scope.gameActive = false
+      $scope.modalOpen = false
+
+      #parameters
+      $scope.gameDuration = 900
 
     $scope.startGame = ->
       $scope.$broadcast('timer-start')
@@ -27,49 +32,28 @@ angular.module('worldmapApp')
       $scope.$broadcast('timer-end')
       $scope.gameActive = false
 
-    $scope.initGame = ->
-      $scope.timerRunning = false
-      $scope.gameActive = false
-      $scope.countries = countries
-      $scope.foundCounter = 0
-      $scope.shouldBeOpen = false
-      _.each($scope.countries, (country) -> country.found = undefined)
-
     $scope.$on 'timer-stopped', (event, data) ->
       $scope.timerRunning = false
 
     $scope.$on 'timer-ended', (event, data) ->
       $scope.timerRunning = false
       $scope.gameActive = false
-      $scope.shouldBeOpen = true
-      $scope.countriesMissed = _.where($scope.countries, {found:undefined})[1..]
+      $scope.modalOpen = true
 
     $scope.findCountry = ->
       targetName = $scope.selector.toLowerCase().replace(/^st\. /, 'st ').replace(/^st /, 'saint ')
       country = _.find $scope.countries, (country) ->
-        found = false
-        if country.name?
-          found = (country.name.toLowerCase() == targetName)
-        if not found and country.alternate_names?
-          found = _.any(_.map(country.alternate_names, (name)->
-           targetName == name.toLowerCase()
-          ), Boolean)
-        return found
+        targetName in _.map([country.name].concat(country.altNames), (str) -> str?.toLowerCase())
 
-      if country? and not country.found
+      if country?
         $scope.selector = ""
         country.found = true
-        $scope.foundCounter = _.filter($scope.countries, {found: true}).length
 
-    $scope.lensX = 1332
-    $scope.lensY = 384
+    $scope.initGame()
 
-    $scope.moveLens = (evt) ->
-      $scope.lensX = evt.clientX * 3
-      $scope.lensY = evt.clientY * 3
-
-    $scope.items = ['item1', 'item2']
-
-    $scope.opts =
-      backdropFade: true
-      dialogFade: true
+#    $scope.lensX = 1332
+#    $scope.lensY = 384
+#
+#    $scope.moveLens = (evt) ->
+#      $scope.lensX = evt.clientX * 3
+#      $scope.lensY = evt.clientY * 3
