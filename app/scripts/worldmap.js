@@ -10044,7 +10044,7 @@ countries = [
     {
         "id": "sx",
         "class": "sx",
-        "name": "Sint Maarten (Dutch Part)",
+        "name": "Sint Maarten",
         "paths": [
             {
                 "class": "landxx",
@@ -10718,7 +10718,7 @@ countries = [
     {
         "id": "mf",
         "class": "eu mf",
-        "name": "Saint Martin (French Part)",
+        "name": "Saint Martin",
         "paths": [
             {
                 "class": "landxx",

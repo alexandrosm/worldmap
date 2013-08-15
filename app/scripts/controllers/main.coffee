@@ -9,7 +9,7 @@ angular.module('worldmapApp')
     $scope.foundCounter = 0
 
     # parameters
-    $scope.gameDuration = 9
+    $scope.gameDuration = 900
 
     $scope.startGame = ->
       $scope.$broadcast('timer-start')
@@ -26,6 +26,14 @@ angular.module('worldmapApp')
     $scope.endGame = ->
       $scope.$broadcast('timer-end')
       $scope.gameActive = false
+
+    $scope.initGame = ->
+      $scope.timerRunning = false
+      $scope.gameActive = false
+      $scope.countries = countries
+      $scope.foundCounter = 0
+      $scope.shouldBeOpen = false
+      _.each($scope.countries, (country) -> country.found = undefined)
 
     $scope.$on 'timer-stopped', (event, data) ->
       $scope.timerRunning = false
@@ -59,9 +67,6 @@ angular.module('worldmapApp')
     $scope.moveLens = (evt) ->
       $scope.lensX = evt.clientX * 3
       $scope.lensY = evt.clientY * 3
-
-    $scope.close = ->
-      $scope.shouldBeOpen = false
 
     $scope.items = ['item1', 'item2']
 

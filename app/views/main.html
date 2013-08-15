@@ -10,31 +10,31 @@
       ng-attr-id="{{ country.id }}"
       ng-attr-name="{{ country.name }}"
       ng-attr-transform="{{ country.transform }}"
-      class="{{ country.class + (country.found ? ' found' : '')}}"
+      class="{{ country.class + (country.found && timerRunning ? ' found' : '')}}"
       ng-attr-d="{{ country.path }}">
     </path>
     <g ng-if="country.paths"
        ng-attr-id="{{ country.id }}"
        ng-attr-name="{{ country.name }}"
        ng-attr-transform="{{ country.transform }}"
-       class="{{ country.class + (country.found ? ' found' : '')}}">
+       class="{{ country.class + (country.found && timerRunning ? ' found' : '')}}">
       <g ng-repeat="path in country.paths">
         <path
           ng-if="path.d"
           ng-attr-id="{{ path.id }}"
           ng-attr-transform="{{ path.transform }}"
-          class="{{ path.class + (country.found ? ' found' : '')}}"
+          class="{{ path.class + (country.found && timerRunning ? ' found' : '')}}"
           ng-attr-d="{{ path.d }}">
         </path>
         <g ng-if="path.pathset"
            ng-attr-id="{{ path.id }}"
            ng-attr-transform="{{ path.transform }}"
-           class="{{ path.class + (country.found ? ' found' : '')}}">
+           class="{{ path.class + (country.found && timerRunning ? ' found' : '')}}">
           <path
             ng-repeat="part in path.pathset"
             ng-attr-id="{{ part.id }}"
             ng-attr-transform="{{ part.transform }}"
-            class="{{ part.class + (country.found ? ' found' : '')}}"
+            class="{{ part.class + (country.found && timerRunning ? ' found' : '')}}"
             ng-attr-d="{{ part.d }}">
           </path>
         </g>
@@ -44,16 +44,16 @@
        ng-attr-id="{{ country.id }}"
        ng-attr-name="{{ country.name }}"
        ng-attr-transform="{{ country.transform }}"
-       class="{{ country.class + (country.found ? ' found' : '')}}">
+       class="{{ country.class + (country.found && timerRunning ? ' found' : '')}}">
       <g ng-attr-id="{{ country.pathset.id }}"
          ng-attr-name="{{ country.pathset.name }}"
          ng-attr-transform="{{ country.pathset.transform }}"
-         class="{{ country.pathset.class + (country.found ? ' found' : '')}}">
+         class="{{ country.pathset.class + (country.found && timerRunning ? ' found' : '')}}">
         <path
             ng-repeat="part in country.pathset.paths"
             ng-attr-id="{{ part.id }}"
             ng-attr-transform="{{ part.transform }}"
-            class="{{ part.class + (country.found ? ' found' : '')}}"
+            class="{{ part.class + (country.found && timerRunning ? ' found' : '')}}"
             ng-attr-d="{{ part.d }}">
         </path>
       </g>
@@ -75,19 +75,32 @@
   <button ng-if="gameActive" type="button" class="btn btn-primary" ng-click="endGame()">Quit</button>
 
   <div modal="shouldBeOpen" close="close()" options="opts">
-    <div class="modal-header">
-      <h3>Game over!</h3>
-    </div>
-    Here's what you missed:
-    <div class="modal-body">
-      <div class="country-list">
-        <ul>
-          <li ng-repeat="country in countriesMissed"><a href="http://en.wikipedia.org/wiki/{{ country.name }}">{{country.name}}</a></li>
-        </ul>
+    <div ng-if="countriesMissed != []">
+      <div class="modal-header">
+        <h3>Game over!</h3>
+      </div>
+      <div class="modal-body">
+        Here's what you missed:
+        <div class="country-list">
+          <ul>
+            <li ng-repeat="country in countriesMissed"><a href="http://en.wikipedia.org/wiki/{{ country.name }}">{{country.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning cancel" ng-click="initGame()">Close</button>
       </div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-warning cancel" ng-click="close()">Cool!</button>
+    <div ng-if="countriesMissed == []">
+      <div class="modal-header">
+        <h3>Epic Victory!</h3>
+      </div>
+      <div class="modal-body">
+        You have found all the countries in the world!
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning cancel" ng-click="initGame()">Close</button>
+      </div>
     </div>
   </div>
 </div>

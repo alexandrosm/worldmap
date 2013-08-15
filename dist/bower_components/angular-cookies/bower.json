@@ -1,6 +1,8 @@
 {
-  "name" : "AngularJS",
-  "version" : "1.1.5",
-  "dependencies" : {
+  "name": "angular-cookies",
+  "version": "1.2.0rc1",
+  "main": "./angular-cookies.js",
+  "dependencies": {
+    "angular": "1.2.0rc1"
   }
 }
