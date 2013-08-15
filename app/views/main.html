@@ -16,31 +16,31 @@
       ng-attr-id="{{ country.id }}"
       ng-attr-name="{{ country.name }}"
       ng-attr-transform="{{ country.transform }}"
-      class="{{ country.class + (country.found && timerRunning ? ' found' : '')}}"
+      class="{{ country.class + (country.found && (boardState == 'playing') ? ' found' : '')}}"
       ng-attr-d="{{ country.path }}">
     </path>
     <g ng-if="country.paths"
        ng-attr-id="{{ country.id }}"
        ng-attr-name="{{ country.name }}"
        ng-attr-transform="{{ country.transform }}"
-       class="{{ country.class + (country.found && timerRunning ? ' found' : '')}}">
+       class="{{ country.class + (country.found && (boardState == 'playing') ? ' found' : '')}}">
       <g ng-repeat="path in country.paths">
         <path
           ng-if="path.d"
           ng-attr-id="{{ path.id }}"
           ng-attr-transform="{{ path.transform }}"
-          class="{{ path.class + (country.found && timerRunning ? ' found' : '')}}"
+          class="{{ path.class + (country.found && (boardState == 'playing') ? ' found' : '')}}"
           ng-attr-d="{{ path.d }}">
         </path>
         <g ng-if="path.pathset"
            ng-attr-id="{{ path.id }}"
            ng-attr-transform="{{ path.transform }}"
-           class="{{ path.class + (country.found && timerRunning ? ' found' : '')}}">
+           class="{{ path.class + (country.found && (boardState == 'playing') ? ' found' : '')}}">
           <path
             ng-repeat="part in path.pathset"
             ng-attr-id="{{ part.id }}"
             ng-attr-transform="{{ part.transform }}"
-            class="{{ part.class + (country.found && timerRunning ? ' found' : '')}}"
+            class="{{ part.class + (country.found && (boardState == 'playing') ? ' found' : '')}}"
             ng-attr-d="{{ part.d }}">
           </path>
         </g>
@@ -50,16 +50,16 @@
        ng-attr-id="{{ country.id }}"
        ng-attr-name="{{ country.name }}"
        ng-attr-transform="{{ country.transform }}"
-       class="{{ country.class + (country.found && timerRunning ? ' found' : '')}}">
+       class="{{ country.class + (country.found && (boardState == 'playing') ? ' found' : '')}}">
       <g ng-attr-id="{{ country.pathset.id }}"
          ng-attr-name="{{ country.pathset.name }}"
          ng-attr-transform="{{ country.pathset.transform }}"
-         class="{{ country.pathset.class + (country.found && timerRunning ? ' found' : '')}}">
+         class="{{ country.pathset.class + (country.found && (boardState == 'playing') ? ' found' : '')}}">
         <path
             ng-repeat="part in country.pathset.paths"
             ng-attr-id="{{ part.id }}"
             ng-attr-transform="{{ part.transform }}"
-            class="{{ part.class + (country.found && timerRunning ? ' found' : '')}}"
+            class="{{ part.class + (country.found && (boardState == 'playing') ? ' found' : '')}}"
             ng-attr-d="{{ part.d }}">
         </path>
       </g>
@@ -68,19 +68,19 @@
   <!--<circle ng-attr-cx="{{ lensX }}" ng-attr-cy="{{ lensY }}" r="300px" fill="none" stroke="#000000" stroke-width="1"></circle>-->
 </svg>
 <div class="main-container">
-  <input ng-show="gameActive" ng-disabled="!timerRunning" type="text" ng-model="selector" ng-change="findCountry()">
+  <input ng-show="(boardState == 'paused' || boardState == 'playing')" ng-disabled="boardState == 'paused'" type="text" ng-model="selector" ng-change="findCountry()">
   <div>Countries Found: {{ _.filter(countries, {found: true}).length }} / {{ countries.length }}</div>
   <div>
-    <timer autostart="false" interval="1000" countdown="gameDuration">
+    <timer autostart="false" interval="1000" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
     </timer>
   </div>
-  <button ng-if="!timerRunning && !gameActive" type="button" class="btn btn-primary" ng-click="startGame()">Start</button>
-  <button ng-if="timerRunning" type="button" class="btn btn-primary" ng-click="broadcast('timer-stop')">Pause</button>
-  <button ng-if="!timerRunning && gameActive" type="button" class="btn btn-primary" ng-click="resumeTimer()">Resume</button>
-  <button ng-if="gameActive" type="button" class="btn btn-primary" ng-click="endGame()">Quit</button>
+  <button ng-if="boardState == 'pre'" type="button" class="btn btn-primary" ng-click="timer('start')">Start</button>
+  <button ng-if="boardState == 'playing'" type="button" class="btn btn-primary" ng-click="timer('stop')">Pause</button>
+  <button ng-if="boardState == 'paused'" type="button" class="btn btn-primary" ng-click="timer('resume')">Resume</button>
+  <button ng-if="boardState == 'paused' || boardState == 'playing'" type="button" class="btn btn-primary" ng-click="timer('end')">Quit</button>
 
-  <div modal="modalOpen" close="close()" options="opts">
+  <div modal="boardState == 'post'" close="close()" options="opts">
     <div ng-if="_.where(countries, {found: false}) != []">
       <div class="modal-header">
         <h3>Game over!</h3>
@@ -94,7 +94,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-warning cancel" ng-click="initGame()">Close</button>
+        <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
       </div>
     </div>
     <div ng-if="_.where(countries, {found: false}) == []">
@@ -105,7 +105,7 @@
         You have found all the countries in the world!
       </div>
       <div class="modal-footer">
-        <button class="btn btn-warning cancel" ng-click="initGame()">Close</button>
+        <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
       </div>
     </div>
   </div>
