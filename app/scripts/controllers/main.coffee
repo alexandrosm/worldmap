@@ -7,7 +7,7 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope) ->
     $scope.$on 'timer-started', -> $scope.boardState = "playing"
     $scope.$on 'timer-resumed', -> $scope.boardState = "playing"
     $scope.$on 'timer-stopped', -> $scope.boardState = "paused"
-    $scope.$on 'timer-ended',   -> $scope.boardState = "post"
+    $scope.$on 'timer-ended'  , -> $scope.boardState = "post"
 
     $scope.initBoard = ->
       $scope.countries = (_.extend(c, {found:false}) for c in countries)
@@ -15,7 +15,7 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope) ->
 
     $scope.findCountry = ->
       targetName = $scope.selector.toLowerCase().replace(/^st\. /, 'st ').replace(/^st /, 'saint ')
-      country = _.find $scope.countries, (country) ->
+      country = _.find _.filter(countries, {dependencyOf: undefined}), (country) ->
         targetName in _.map([country.name].concat(country.altNames), (str) -> str?.toLowerCase())
 
       country?.found = true

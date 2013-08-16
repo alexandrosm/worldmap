@@ -7,7 +7,7 @@
   <path
       ng-if="ocean.path"
       ng-attr-id="{{ ocean.id }}"
-      class="{{ ocean.class }}"
+      class="oceanxx"
       ng-attr-d="{{ ocean.path }}">
   </path>
   <g ng-repeat="country in countries">
@@ -16,31 +16,36 @@
       ng-attr-id="{{ country.id }}"
       ng-attr-name="{{ country.name }}"
       ng-attr-transform="{{ country.transform }}"
-      class="{{ country.class + (country.found && (boardState == 'playing') ? ' found' : '')}}"
+      class="landxx"
+      style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
       ng-attr-d="{{ country.path }}">
     </path>
     <g ng-if="country.paths"
        ng-attr-id="{{ country.id }}"
        ng-attr-name="{{ country.name }}"
        ng-attr-transform="{{ country.transform }}"
-       class="{{ country.class + (country.found && (boardState == 'playing') ? ' found' : '')}}">
+       class="landxx"
+       style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
       <g ng-repeat="path in country.paths">
         <path
           ng-if="path.d"
           ng-attr-id="{{ path.id }}"
           ng-attr-transform="{{ path.transform }}"
-          class="{{ path.class + (country.found && (boardState == 'playing') ? ' found' : '')}}"
+          class="landxx"
+          style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
           ng-attr-d="{{ path.d }}">
         </path>
         <g ng-if="path.pathset"
            ng-attr-id="{{ path.id }}"
            ng-attr-transform="{{ path.transform }}"
-           class="{{ path.class + (country.found && (boardState == 'playing') ? ' found' : '')}}">
+           class="landxx"
+           style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
           <path
             ng-repeat="part in path.pathset"
             ng-attr-id="{{ part.id }}"
             ng-attr-transform="{{ part.transform }}"
-            class="{{ part.class + (country.found && (boardState == 'playing') ? ' found' : '')}}"
+            class="landxx"
+            style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
             ng-attr-d="{{ part.d }}">
           </path>
         </g>
@@ -50,16 +55,19 @@
        ng-attr-id="{{ country.id }}"
        ng-attr-name="{{ country.name }}"
        ng-attr-transform="{{ country.transform }}"
-       class="{{ country.class + (country.found && (boardState == 'playing') ? ' found' : '')}}">
+       class="landxx"
+       style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
       <g ng-attr-id="{{ country.pathset.id }}"
          ng-attr-name="{{ country.pathset.name }}"
          ng-attr-transform="{{ country.pathset.transform }}"
-         class="{{ country.pathset.class + (country.found && (boardState == 'playing') ? ' found' : '')}}">
+         class="landxx"
+         style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
         <path
             ng-repeat="part in country.pathset.paths"
             ng-attr-id="{{ part.id }}"
             ng-attr-transform="{{ part.transform }}"
-            class="{{ part.class + (country.found && (boardState == 'playing') ? ' found' : '')}}"
+            class="landxx"
+            style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
             ng-attr-d="{{ part.d }}">
         </path>
       </g>
@@ -69,7 +77,7 @@
 </svg>
 <div class="main-container">
   <input ng-show="(boardState == 'paused' || boardState == 'playing')" ng-disabled="boardState == 'paused'" type="text" ng-model="selector" ng-change="findCountry()">
-  <div>Countries Found: {{ _.filter(countries, {found: true}).length }} / {{ countries.length }}</div>
+  <div>Countries Found: {{ _.filter(countries, {found: true}).length }} / {{ _.filter(countries, {dependencyOf: undefined}).length }}</div>
   <div>
     <timer autostart="false" interval="1000" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
