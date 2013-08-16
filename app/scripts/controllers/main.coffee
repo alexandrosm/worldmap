@@ -10,7 +10,7 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope) ->
 
   $scope.findCountry = ->
     targetName = $scope.selector.toLowerCase().replace(/^st\. /, 'st ').replace(/^st /, 'saint ')
-    country = _.find _.filter(countries, {dependencyOf: undefined}), (country) ->
+    country = _.find _.filter(countries, { dependencyOf: false }), (country) ->
       targetName in _.map([country.name].concat(country.altNames), (str) -> str?.toLowerCase())
 
     if country and not country.found
@@ -18,7 +18,7 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope) ->
       $scope.selector = ""
 
   do $scope.initBoard = ->
-    $scope.countries = (_.extend(c, {found:false}) for c in countries)
+    $scope.countries = (_.defaults(_.extend(c, { found: false }), { dependencyOf: false }) for c in countries)
     $scope.boardState = "pre"
 
 #    $scope.lensX = 1332

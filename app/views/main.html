@@ -77,7 +77,7 @@
 </svg>
 <div class="main-container">
   <input ng-show="(boardState == 'paused' || boardState == 'playing')" ng-disabled="boardState == 'paused'" type="text" ng-model="selector" ng-change="findCountry()">
-  <div>Countries Found: {{ (countries | filter:{found: true}).length }} / {{ (countries | filter: {dependencyOf: undefined}).length }}</div>
+  <div>Countries Found: {{ (countries | filter:{found: true}).length }} / {{ (countries | filter: {dependencyOf: 'false'}).length }}</div>
   <div>
     <timer autostart="false" interval="1000" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
@@ -87,9 +87,7 @@
   <button ng-if="boardState == 'playing'" type="button" class="btn btn-primary" ng-click="timer('stop')">Pause</button>
   <button ng-if="boardState == 'paused'" type="button" class="btn btn-primary" ng-click="timer('resume')">Resume</button>
   <button ng-if="boardState == 'paused' || boardState == 'playing'" type="button" class="btn btn-primary" ng-click="timer('end')">Quit</button>
-  <div ng-repeat="country in (countries | filter: {found: true})">
-    <div>{{ country.name }}</div>
-  </div>
+
   <div modal="boardState == 'post'" close="close()" options="opts">
     <div ng-if="(countries | filter: {found: false}) != []">
       <div class="modal-header">
@@ -99,7 +97,7 @@
         Here's what you missed:
         <div class="country-list">
           <ul>
-            <li ng-repeat="country in (countries | filter: {found: false}| filter: {dependencyOf: undefined})">
+            <li ng-repeat="country in (countries | filter: {found: false}| filter: {dependencyOf: 'false'})">
               <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">
                 {{country.name}}
               </a>
