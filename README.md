@@ -22,7 +22,9 @@ visit http://worldmap.io and enjoy!
 
 install nodejs 0.10.15
 
-install ruby 1.9.3
+install ruby 1.9.3 or 2.0
+
+make sure you have ruby in your path
 
 gem install compass
 
@@ -30,13 +32,19 @@ gem install compass
 
 clone repository
 
-npm install yo grunt-cli bower
+npm -g install yo grunt-cli bower
 
-npm install
+npm install --dev
+
+...expect a lot of packages to be installed. --dev is required.
 
 bower install
 
+...expect a lot of packages to be installed
+
 grunt server
+
+...the browser should come up with the application
 
 == how to deploy
 
