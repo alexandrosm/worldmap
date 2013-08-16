@@ -1,5 +1,4 @@
 angular.module('worldmapApp').controller 'MainCtrl', ($scope) ->
-    $scope._ = _
     $scope.timer = (evt) -> $scope.$broadcast('timer-' + evt)
     $scope.opts = {backdropFade: true, dialogFade: true}
     $scope.ocean = ocean
