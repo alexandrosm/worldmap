@@ -32,7 +32,9 @@ gem install compass
 
 clone repository
 
-npm -g install yo grunt-cli bower
+npm -g install yo grunt-cli bower karma
+
+optional: (npm install -g generator-angular)
 
 npm install --dev
 
