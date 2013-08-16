@@ -18,8 +18,9 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope) ->
       country = _.find _.filter(countries, {dependencyOf: undefined}), (country) ->
         targetName in _.map([country.name].concat(country.altNames), (str) -> str?.toLowerCase())
 
-      country?.found = true
-      $scope.selector = "" if country
+      if country and not country.found
+        country.found = true
+        $scope.selector = ""
 
     $scope.initBoard()
 
