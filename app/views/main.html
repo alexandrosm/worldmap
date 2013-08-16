@@ -19,6 +19,7 @@
       class="landxx"
       style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
       ng-attr-d="{{ country.path }}">
+      <title ng-if="country.found">{{ country.name }}</title>
     </path>
     <g ng-if="country.paths"
        ng-attr-id="{{ country.id }}"
@@ -34,6 +35,7 @@
           class="landxx"
           style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
           ng-attr-d="{{ path.d }}">
+          <title ng-if="country.found">{{ country.name }}</title>
         </path>
         <g ng-if="path.pathset"
            ng-attr-id="{{ path.id }}"
@@ -47,6 +49,7 @@
             class="landxx"
             style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
             ng-attr-d="{{ part.d }}">
+            <title ng-if="country.found">{{ country.name }}</title>
           </path>
         </g>
       </g>
@@ -69,6 +72,7 @@
             class="landxx"
             style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
             ng-attr-d="{{ part.d }}">
+          <title ng-if="country.found">{{ country.name }}</title>
         </path>
       </g>
     </g>

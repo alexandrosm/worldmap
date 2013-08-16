@@ -1,8 +1,11 @@
 'use strict'
 
-describe 'Controller: MainCtrl', () ->
+describe 'Controller: MainCtrl', (_) ->
 
   # load the controller's module
+  beforeEach module 'ngRoute'
+  beforeEach module 'timer'
+  beforeEach module 'ui.bootstrap'
   beforeEach module 'worldmapApp'
 
   MainCtrl = {}
@@ -15,5 +18,5 @@ describe 'Controller: MainCtrl', () ->
       $scope: scope
     }
 
-  it 'should attach a list of awesomeThings to the scope', () ->
-    expect(scope.awesomeThings.length).toBe 3;
+  it 'should attach a list of countries to the scope', () ->
+    expect(scope.countries.length).toBe 241;
