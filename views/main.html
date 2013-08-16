@@ -38,7 +38,7 @@
   <button ng-if="boardState == 'paused' || boardState == 'playing'" type="button" class="btn btn-primary" ng-click="timer('end')">Quit</button>
 
   <div modal="boardState == 'post'" close="close()" options="opts">
-    <div ng-if="(countries | filter: {found: false}) != []">
+    <div ng-if="(countries | filter: {found: 'false'}) != []">
       <div class="modal-header">
         <h3>Game over!</h3>
       </div>
@@ -46,7 +46,7 @@
         Here's what you missed:
         <div class="country-list">
           <ul>
-            <li ng-repeat="country in (countries | filter: {found: false}| filter: {dependencyOf: 'false'})">
+            <li ng-repeat="country in (countries | filter: {found: 'false'}| filter: {dependencyOf: 'false'})">
               <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">
                 {{country.name}}
               </a>
@@ -58,7 +58,7 @@
         <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
       </div>
     </div>
-    <div ng-if="(countries | filter: {found: false}) == []">
+    <div ng-if="(countries | filter: {found: 'false'}) == []">
       <div class="modal-header">
         <h3>Epic Victory!</h3>
       </div>
