@@ -15,6 +15,8 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope) ->
 
     if country and not country.found
       country.found = true
+      if _.filter(countries, { dependencyOf: false, found: false }).length == 0
+        $scope.boardState = "post"
       $scope.selector = ""
 
   do $scope.initBoard = ->

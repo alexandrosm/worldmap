@@ -81,7 +81,7 @@
 </svg>
 <div class="main-container">
   <input ng-show="(boardState == 'paused' || boardState == 'playing')" ng-disabled="boardState == 'paused'" type="text" ng-model="selector" ng-change="findCountry()">
-  <div>Countries Found: {{ (countries | filter:{found: true}).length }} / {{ (countries | filter: {dependencyOf: 'false'}).length }}</div>
+  <div>Found {{ (countries | filter:{found: true}).length }} / {{ (countries | filter: {dependencyOf: 'false'}).length }} Countries</div>
   <div>
     <timer autostart="false" interval="1000" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
