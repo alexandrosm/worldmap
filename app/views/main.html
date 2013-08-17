@@ -4,31 +4,32 @@
     width="863"
     viewBox="83 46 2529 1428"
     ng-mousemove="moveLens($event)">
+<g transform ="scale(1)">
   <g ng-repeat="country in countries">
     <g ng-attr-id="{{ country.id }}"
        ng-attr-name="{{ country.name }}"
        ng-attr-transform="{{ country.transform }}"
-       style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
+       style="fill: {{ country.found ? 'steelblue' : '#e0e0e0' }}">
       <g ng-repeat="path in country.paths">
         <path
           ng-if="path.d"
           ng-attr-id="{{ path.id }}"
           ng-attr-transform="{{ path.transform }}"
           class="landxx"
-          style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
+          style="fill: {{ country.found ? 'steelblue' : '#e0e0e0' }}"
           ng-attr-d="{{ path.d }}">
           <title ng-if="country.found">{{ country.name }}</title>
         </path>
         <g ng-if="path.paths"
            ng-attr-id="{{ path.id }}"
            ng-attr-transform="{{ path.transform }}"
-           style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
+           style="fill: {{ country.found ? 'steelblue' : '#e0e0e0' }}">
           <path
             ng-repeat="part in path.paths"
             ng-attr-id="{{ part.id }}"
             ng-attr-transform="{{ part.transform }}"
             class="landxx"
-            style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
+            style="fill: {{ country.found ? 'steelblue' : '#e0e0e0' }}"
             ng-attr-d="{{ part.d }}">
             <title ng-if="country.found">{{ country.name }}</title>
           </path>
@@ -39,27 +40,27 @@
 		<g ng-attr-id="{{ dependency.id }}"
 		   ng-attr-name="{{ dependency.name }}"
 		   ng-attr-transform="{{ dependency.transform }}"
-		   style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
+		   style="fill: {{ country.found ? 'steelblue' : '#e0e0e0' }}">
 		  <g ng-repeat="path in dependency.paths">
 			<path
 			  ng-if="path.d"
 			  ng-attr-id="{{ path.id }}"
 			  ng-attr-transform="{{ path.transform }}"
 			  class="landxx"
-			  style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
+			  style="fill: {{ country.found ? 'lightsteelblue' : '#e0e0e0' }}"
 			  ng-attr-d="{{ path.d }}">
 			  <title ng-if="country.found">{{ dependency.name }} (dependency of {{ country.name }})</title>
 			</path>
 			<g ng-if="path.paths"
 			   ng-attr-id="{{ path.id }}"
 			   ng-attr-transform="{{ path.transform }}"
-			   style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
+			   style="fill: {{ country.found ? 'lightsteelblue' : '#e0e0e0' }}">
 			  <path
 				ng-repeat="part in path.paths"
 				ng-attr-id="{{ part.id }}"
 				ng-attr-transform="{{ part.transform }}"
 				class="landxx"
-				style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}"
+				style="fill: {{ country.found ? 'lightsteelblue' : '#e0e0e0' }}"
 				ng-attr-d="{{ part.d }}">
 				<title ng-if="country.found">{{ dependency.name }} (dependency of {{ country.name }})</title>
 			  </path>
@@ -68,7 +69,8 @@
 		</g>
 	</g>
   </g>
-  <!--<circle ng-attr-cx="{{ lensX }}" ng-attr-cy="{{ lensY }}" r="300px" fill="none" stroke="#000000" stroke-width="1"></circle>-->
+  </g>
+  <!--<circle ng-attr-cx="{{ lensX }}" ng-attr-cy="{{ lensY }}" r="300px" fill="none" stroke="steelblue" stroke-width="1"></circle>-->
 </svg>
 <div class="main-container">
   <input ng-show="(boardState == 'paused' || boardState == 'playing')" ng-disabled="boardState == 'paused'" type="text" ng-model="selector" ng-change="findCountry()">
