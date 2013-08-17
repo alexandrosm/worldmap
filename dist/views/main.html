@@ -4,13 +4,16 @@
   </path>
   <g ng-repeat="country in countries">
     <path ng-if="country.path" ng-attr-id="{{ country.id }}" ng-attr-name="{{ country.name }}" ng-attr-transform="{{ country.transform }}" class="landxx" style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}" ng-attr-d="{{ country.path }}">
+      <title ng-if="country.found">{{ country.name }}</title>
     </path>
     <g ng-if="country.paths" ng-attr-id="{{ country.id }}" ng-attr-name="{{ country.name }}" ng-attr-transform="{{ country.transform }}" class="landxx" style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
       <g ng-repeat="path in country.paths">
         <path ng-if="path.d" ng-attr-id="{{ path.id }}" ng-attr-transform="{{ path.transform }}" class="landxx" style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}" ng-attr-d="{{ path.d }}">
+          <title ng-if="country.found">{{ country.name }}</title>
         </path>
         <g ng-if="path.pathset" ng-attr-id="{{ path.id }}" ng-attr-transform="{{ path.transform }}" class="landxx" style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
           <path ng-repeat="part in path.pathset" ng-attr-id="{{ part.id }}" ng-attr-transform="{{ part.transform }}" class="landxx" style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}" ng-attr-d="{{ part.d }}">
+            <title ng-if="country.found">{{ country.name }}</title>
           </path>
         </g>
       </g>
@@ -18,6 +21,7 @@
     <g ng-if="country.pathset" ng-attr-id="{{ country.id }}" ng-attr-name="{{ country.name }}" ng-attr-transform="{{ country.transform }}" class="landxx" style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
       <g ng-attr-id="{{ country.pathset.id }}" ng-attr-name="{{ country.pathset.name }}" ng-attr-transform="{{ country.pathset.transform }}" class="landxx" style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}">
         <path ng-repeat="part in country.pathset.paths" ng-attr-id="{{ part.id }}" ng-attr-transform="{{ part.transform }}" class="landxx" style="fill: {{ country.found ? '#000000' : '#e0e0e0' }}" ng-attr-d="{{ part.d }}">
+          <title ng-if="country.found">{{ country.name }}</title>
         </path>
       </g>
     </g>
@@ -26,7 +30,7 @@
 </svg>
 <div class="main-container">
   <input ng-show="(boardState == 'paused' || boardState == 'playing')" ng-disabled="boardState == 'paused'" type="text" ng-model="selector" ng-change="findCountry()">
-  <div>Countries Found: {{ (countries | filter:{found: true}).length }} / {{ (countries | filter: {dependencyOf: 'false'}).length }}</div>
+  <div>Found {{ (countries | filter:{found: true}).length }} / {{ (countries | filter: {dependencyOf: 'false'}).length }} Countries</div>
   <div>
     <timer autostart="false" interval="1000" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
