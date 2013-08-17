@@ -16,11 +16,11 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope) ->
     if country and not country.found
       country.found = true
       if _.filter(countries, { dependencyOf: false, found: false }).length == 0
-        $scope.boardState = "post"
+        $scope.timer('end')
       $scope.selector = ""
 
   do $scope.initBoard = ->
-    $scope.countries = (_.defaults(_.extend(c, { found: false }), { dependencyOf: false }) for c in countries)
+    $scope.countries = (_.defaults(_.extend(c, found: false), dependencyOf: false) for c in countries)
     $scope.boardState = "pre"
 
 #    $scope.lensX = 1332
