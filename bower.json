@@ -17,5 +17,8 @@
   "devDependencies": {
     "angular-mocks": "angular/bower-angular-mocks#1.2.0rc1",
     "angular-scenario": "angular/bower-angular-scenario#1.2.0rc1"
+  },
+  "resolutions": {
+    "angular": "1.2.0rc1"
   }
 }
