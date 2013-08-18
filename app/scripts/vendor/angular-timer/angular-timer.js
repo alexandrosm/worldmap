@@ -9,7 +9,7 @@ angular.module('timer', [])
                 countdownattr: '=countdown',
                 autoStart: '=autostart'
             },
-            controller: function ($scope, $element, $attrs) {
+            controller: function ($scope, $element) {
                 if ($element.html().trim().length === 0) {
                     $element.append($compile('<span>{{millis}}</span>')($scope));
                 }
@@ -55,7 +55,6 @@ angular.module('timer', [])
                         $scope.countdown += 1;
                     }
                     $scope.startTime = new Date() - ($scope.stoppedTime - $scope.startTime);
-                    console.log($scope.startTime);
                     $scope.$emit('timer-resumed');
                     tick();
                 };
@@ -114,7 +113,6 @@ angular.module('timer', [])
                         $scope.countdown--;
                     }
                     else if ($scope.countdown <= 0) {
-                        console.log($scope.millis);
                         $scope.end();
                         return;
                     }
