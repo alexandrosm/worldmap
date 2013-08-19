@@ -6,10 +6,14 @@ angular.module('timer', [])
             scope: {
                 interval: '=interval',
                 startTimeAttr: '=startTime',
-                countdownattr: '=countdown',
-                autoStart: '=autostart'
+                countdownattr: '=countdown'
             },
-            controller: function ($scope, $element) {
+            controller: function ($scope, $element, $attrs) {
+                //angular 1.2 doesn't support attributes ending in "-start", so we're
+                //supporting both "autostart" and "auto-start" as a solution for
+                //backward and forward compatibility.
+                $scope.autoStart = $attrs.autoStart || $attrs.autostart;
+
                 if ($element.html().trim().length === 0) {
                     $element.append($compile('<span>{{millis}}</span>')($scope));
                 }
@@ -51,7 +55,7 @@ angular.module('timer', [])
 
                 $scope.resume = $element[0].resume = function () {
                     resetTimeout();
-                    if($scope.countdownattr){
+                    if ($scope.countdownattr) {
                         $scope.countdown += 1;
                     }
                     $scope.startTime = new Date() - ($scope.stoppedTime - $scope.startTime);
@@ -59,14 +63,14 @@ angular.module('timer', [])
                     tick();
                 };
 
-                $scope.stop = $element[0].stop = function () {
+                $scope.stop = $scope.pause = $element[0].stop = $element[0].pause = function () {
                     $scope.stoppedTime = new Date();
                     resetTimeout();
                     $scope.$emit('timer-stopped', {millis: $scope.millis, seconds: $scope.seconds, minutes: $scope.minutes, hours: $scope.hours, days: $scope.days});
                     $scope.timeoutId = null;
                 };
-
-                $scope.end = $element[0].stop = function () {
+				
+                $scope.end = $element[0].end = function () {
                     resetTimeout();
                     $scope.startTime = null;
                     $scope.timeoutId = null;
@@ -86,23 +90,23 @@ angular.module('timer', [])
 
                 function calculateTimeUnits() {
                     $scope.seconds = Math.floor(($scope.millis / 1000) % 60);
-                    $scope.minutes = Math.floor((($scope.millis / (1000 * 60)) % 60));
-                    $scope.hours = Math.floor((($scope.millis / (1000 * 60 * 60)) % 24));
-                    $scope.days = Math.floor((($scope.millis / (1000 * 60 * 60)) / 24));
+                    $scope.minutes = Math.floor((($scope.millis / (60000)) % 60));
+                    $scope.hours = Math.floor((($scope.millis / (3600000)) % 24));
+                    $scope.days = Math.floor((($scope.millis / (3600000)) / 24));
                 }
 
                 //determine initial values of time units
-                if($scope.countdownattr){
+                if ($scope.countdownattr) {
                     $scope.millis = $scope.countdownattr * 1000
                 } else {
                     $scope.millis = 0
                 }
-                calculateTimeUnits()
+                calculateTimeUnits();
 
                 var tick = function () {
 
                     $scope.millis = new Date() - $scope.startTime;
-                    adjustment = $scope.millis % 1000;
+                    var adjustment = $scope.millis % 1000;
 
                     if ($scope.countdownattr) {
                         $scope.millis = $scope.countdown * 1000;
