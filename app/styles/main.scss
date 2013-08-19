@@ -39,6 +39,7 @@ body {
   fill:#e0e0e0;
   stroke:#000000;
   stroke-width:0;
+  transition: fill 1s;
 }
 
 .landxx {
@@ -46,4 +47,5 @@ body {
   stroke:#ffffff;
   stroke-width:0;
   fill-rule:evenodd;
+  transition: fill 1s;
 }
