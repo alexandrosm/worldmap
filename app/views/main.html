@@ -91,7 +91,7 @@
 </svg>
 <div class="main-container">
   <input ng-show="(boardState == 'paused' || boardState == 'playing')" ng-disabled="boardState == 'paused'" type="text" ng-model="selector" ui-keypress="{enter: 'findCountry()'}">
-  <div>Found {{ (countries | filter:{found: true}).length }} / {{ (countries | filter: {dependencyOf: 'false'}).length }} Countries</div>
+  <div>Found {{ (countries | filter:{found: true}).length }} / {{ (countries).length }} Countries</div>
   <div>
     <timer autostart="false" interval="1000" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
@@ -111,7 +111,7 @@
         Here's what you missed:
         <div class="country-list">
           <ul ng-if="boardState == 'post'">
-            <li ng-repeat="country in (countries | filter: {found: 'false'}| filter: {dependencyOf: 'false'})">
+            <li ng-repeat="country in (countries | filter: {found: 'false'})">
               <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">
                 {{country.name}}
               </a>
