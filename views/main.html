@@ -51,37 +51,37 @@
   <button ng-if="boardState == 'paused'" type="button" class="btn btn-success" ng-click="timer('resume')">Resume</button>
   <button ng-if="boardState == 'paused' || boardState == 'playing'" type="button" class="btn btn-danger" ng-click="timer('end')">Quit</button>
 
-  <div modal="boardState == 'post'" close="initBoard()" options="opts">
-    <div ng-if="(countries | filter: {found: 'false'}).length != 0">
-      <div class="modal-header">
-        <h3>Game over!</h3>
-      </div>
-      <div class="modal-body">
-        Here's what you missed:
-        <div class="country-list">
-          <ul ng-if="boardState == 'post'">
-            <li ng-repeat="country in (countries | filter: {found: 'false'})">
-              <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">
-                {{country.name}}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
+  <div modal="boardState == 'lose'" close="initBoard()" options="opts">
+    <div class="modal-header">
+      <h3>Game over!</h3>
+    </div>
+    <div class="modal-body">
+      Here's what you missed:
+      <div class="country-list">
+        <ul ng-if="boardState == 'post'">
+          <li ng-repeat="country in (countries | filter: {found: 'false'})">
+            <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">
+              {{country.name}}
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div ng-if="(countries | filter: {found: 'false'}).length == 0">
-      <div class="modal-header">
-        <h3>Epic Victory!</h3>
-      </div>
-      <div class="modal-body">
-        You have found all the countries in the world!
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
-      </div>
+    <div class="modal-footer">
+      <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
     </div>
   </div>
+
+  <div modal="boardState == 'win'" close="initBoard()" options="opts">
+    <div class="modal-header">
+      <h3>Epic Victory!</h3>
+    </div>
+    <div class="modal-body">
+      You have found all the countries in the world!
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
+    </div>
+  </div>
+
 </div>
