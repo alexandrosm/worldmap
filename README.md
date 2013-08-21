@@ -36,9 +36,9 @@ npm -g install yo grunt-cli bower karma
 
 optional: (npm install -g generator-angular)
 
-npm install --dev
+npm install
 
-...expect a lot of packages to be installed. --dev is required.
+...expect a lot of packages to be installed.
 
 bower install
 
