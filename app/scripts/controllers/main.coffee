@@ -5,6 +5,7 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope, angularFire) ->
     $scope.opts = {backdropFade: true, dialogFade: true}
     $scope.ocean = ocean
     $scope.input = {}
+    $scope.continents = ['Europe', 'Asia', 'Africa', 'North America', 'South America', 'Oceania']
 
     $scope.$on 'timer-started', -> $scope.boardState = "playing"
     $scope.$on 'timer-resumed', -> $scope.boardState = "playing"
