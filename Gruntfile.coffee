@@ -103,6 +103,18 @@ module.exports = (grunt) ->
           ext: ".js"
         ]
 
+    recess:
+      options:
+        compile: true
+      dist:
+        files: [
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: '{,*/}*.less',
+          dest: '.tmp/styles/',
+          ext: '.css'
+        ]
+
     compass:
       options:
         sassDir: "<%= yeoman.app %>/styles"
