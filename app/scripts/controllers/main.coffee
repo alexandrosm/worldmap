@@ -4,6 +4,7 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope, angularFire) ->
     $scope.timer = (evt) -> $scope.$broadcast('timer-' + evt)
     $scope.opts = {backdropFade: true, dialogFade: true}
     $scope.ocean = ocean
+    $scope.input = {}
 
     $scope.$on 'timer-started', -> $scope.boardState = "playing"
     $scope.$on 'timer-resumed', -> $scope.boardState = "playing"
@@ -11,7 +12,7 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope, angularFire) ->
     $scope.$on 'timer-ended'  , -> $scope.boardState = "lose"
 
     $scope.findCountry = ->
-      targetName = $scope.selector.toLowerCase().replace(/^st\. /, 'st ').replace(/^st /, 'saint ')
+      targetName = $scope.input.country.toLowerCase().replace(/^st\. /, 'st ').replace(/^st /, 'saint ')
       country = _.find countries, (country) ->
         targetName in _.map([country.name].concat(country.altNames), (str) -> str?.toLowerCase())
 
@@ -20,7 +21,7 @@ angular.module('worldmapApp').controller 'MainCtrl', ($scope, angularFire) ->
         if _.filter(countries, found: false ).length == 0
           $scope.timer('stop')
           $scope.boardState = "win"
-        $scope.selector = ""
+        $scope.input.country = ""
         $scope.countryHits[country.id] = if $scope.countryHits[country.id] then $scope.countryHits[country.id]+1 else 1
 
     do $scope.initBoard = ->
