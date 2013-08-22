@@ -100,11 +100,11 @@
   </span>
 
   <div>Found {{ (countries | filter:{found: true}).length }} / {{ (countries).length }} Countries</div>
-  <div>Europe {{ (countries | filter:{continent: 'Europe'} | filter:{found: true}).length }} / {{ (countries  | filter:{continent: 'Europe'}).length }} Countries</div>
-  <div>Asia {{ (countries | filter:{continent: 'Asia'} | filter:{found: true}).length }} / {{ (countries  | filter:{continent: 'Asia'}).length }} Countries</div>
-  <div>North America {{ (countries | filter:{continent: 'North America'} | filter:{found: true}).length }} / {{ (countries  | filter:{continent: 'North America'}).length }} Countries</div>
-  <div>South America {{ (countries | filter:{continent: 'South America'} | filter:{found: true}).length }} / {{ (countries  | filter:{continent: 'South America'}).length }} Countries</div>
-  <div>Oceania {{ (countries | filter:{continent: 'Oceania'} | filter:{found: true}).length }} / {{ (countries  | filter:{continent: 'Oceania'}).length }} Countries</div>
+  <div ng-repeat="continent in continents">
+    {{ continent }}
+    {{ (countries | filter:{continent: continent, found: true}).length }} /
+    {{ (countries  | filter:{continent: continent}).length }}
+  </div>
   <div>
     <timer autostart="false" interval="1000" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
@@ -123,12 +123,13 @@
     </div>
     <div class="modal-body">
       Here's what you missed:
-      <div class="country-list">
-        <ul ng-if="boardState == 'lose'">
-          <li ng-repeat="country in (countries | filter: {found: 'false'})">
-            <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">
-              {{country.name}}
-            </a>
+      <div class="country-list" ng-if="boardState == 'lose'">
+        <span ng-repeat-start="continent in continents">
+          {{ continent }}:
+        </span>
+        <ul ng-repeat-end>
+          <li ng-repeat="country in (countries | filter:{continent: continent, found: 'false'})">
+            <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">{{country.name}}</a>
           </li>
         </ul>
       </div>
