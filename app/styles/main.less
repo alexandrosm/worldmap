@@ -1,0 +1,72 @@
+@import "../bower_components/bootstrap/less/bootstrap";
+
+.transform-origin (@x:center, @y:center) {
+  -webkit-transform-origin: @x @y;
+  -moz-transform-origin:    @x @y;
+  -ms-transform-origin:     @x @y;
+  -o-transform-origin:      @x @y;
+}
+.rotate (@deg) {
+  -webkit-transform: rotate(@deg);
+  -moz-transform: 	 rotate(@deg);
+  -ms-transform: 		 rotate(@deg);
+  -o-transform: 		 rotate(@deg);
+}
+
+.columns(
+  @count : 3,
+  @gap : 10
+) {
+  -webkit-column-count: @count;
+  -moz-column-count: @count;
+  column-count: @count;
+
+  -webkit-column-gap: @gap;
+  -moz-column-gap: @gap;
+  column-gap: @gap;
+}
+
+html, body {
+  margin: 20px;
+}
+
+body {
+  background: #fafafa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.logo {
+  font-family: 'Stardos Stencil', cursive;
+  font-size: 56px;
+  .transform-origin(8%);
+  .rotate(-7deg);
+}
+
+.country-list {
+  .columns(3);
+}
+
+.main-container {
+  width:100%;
+  text-align: center;
+}
+
+/* Circles around small countries.
+ * Change opacity to 1 to display all circles.
+ */
+.circlexx {
+  opacity:1;
+  fill:#e0e0e0;
+  stroke:#000000;
+  stroke-width:0;
+  transition: fill 1s;
+}
+
+.landxx {
+  fill: #e0e0e0;
+  stroke:#ffffff;
+  stroke-width:0;
+  fill-rule:evenodd;
+  transition: fill 1s;
+}

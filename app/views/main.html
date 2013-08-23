@@ -128,7 +128,7 @@
           {{ continent }}:
         </span>
         <ul ng-repeat-end>
-          <li ng-repeat="country in (countries | filter:{continent: continent, found: 'false'})">
+          <li ng-repeat="country in (countries | orderBy: 'name' | filter:{continent: continent, found: 'false'})">
             <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">{{country.name}}</a>
           </li>
         </ul>

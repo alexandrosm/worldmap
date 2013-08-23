@@ -33,9 +33,9 @@ module.exports = (grunt) ->
         files: ["test/spec/{,*/}*.coffee"]
         tasks: ["coffee:test"]
 
-      compass:
-        files: ["<%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
-        tasks: ["compass:server"]
+      recess:
+        files: ["<%= yeoman.app %>/styles/{,*/}*.less"]
+        tasks: ["recess:server"]
 
       livereload:
         options:
@@ -114,26 +114,14 @@ module.exports = (grunt) ->
           dest: '.tmp/styles/',
           ext: '.css'
         ]
-
-    compass:
-      options:
-        sassDir: "<%= yeoman.app %>/styles"
-        cssDir: ".tmp/styles"
-        generatedImagesDir: ".tmp/images/generated"
-        imagesDir: "<%= yeoman.app %>/images"
-        javascriptsDir: "<%= yeoman.app %>/scripts"
-        fontsDir: "<%= yeoman.app %>/styles/fonts"
-        importPath: "<%= yeoman.app %>/bower_components"
-        httpImagesPath: "/images"
-        httpGeneratedImagesPath: "/images/generated"
-        httpFontsPath: "/styles/fonts"
-        relativeAssets: false
-
-      dist: {}
       server:
-        options:
-          debugInfo: true
-
+        files: [
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: '{,*/}*.less',
+          dest: '.tmp/styles/',
+          ext: '.css'
+        ]
 
   # not used since Uglify task does concat,
   # but still available if needed
@@ -225,9 +213,9 @@ module.exports = (grunt) ->
         ]
 
     concurrent:
-      server: ["coffee:dist", "compass:server"]
+      server: ["coffee:dist", "recess:server"]
       test: ["coffee", "compass"]
-      dist: ["coffee", "compass:dist", "imagemin", "svgmin", "htmlmin"]
+      dist: ["coffee", "recess:dist", "imagemin", "svgmin", "htmlmin"]
 
     karma:
       unit:

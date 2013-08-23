@@ -39,14 +39,24 @@
   <!--<circle ng-attr-cx="{{ lensX }}" ng-attr-cy="{{ lensY }}" r="300px" fill="none" stroke="steelblue" stroke-width="1"></circle>-->
 </svg>
 <div class="main-container">
-  <input ng-show="(boardState == 'paused' || boardState == 'playing')" ng-disabled="boardState == 'paused'" type="text" ng-model="selector" ui-keypress="{enter: 'findCountry()'}">
+  <span ng-if="(boardState == 'paused' || boardState == 'playing')">
+    <input ng-disabled="boardState == 'paused'" type="text" ng-model="input.country" ui-keypress="{enter: 'findCountry()'}" autofocus="">
+  </span>
+
   <div>Found {{ (countries | filter:{found: true}).length }} / {{ (countries).length }} Countries</div>
+  <div ng-repeat="continent in continents">
+    {{ continent }}
+    {{ (countries | filter:{continent: continent, found: true}).length }} /
+    {{ (countries  | filter:{continent: continent}).length }}
+  </div>
   <div>
     <timer autostart="false" interval="1000" countdown="900">
       Time left: {{minutes}} minutes, {{seconds}} seconds
     </timer>
   </div>
-  <button ng-if="boardState == 'pre'" type="button" class="btn btn-success" ng-click="timer('start')">Start</button>
+  <form ng-if="boardState == 'pre'" ng-submit="timer('start')">
+    <button type="submit" class="btn btn-success" autofocus="">Start</button>
+  </form>
   <button ng-if="boardState == 'playing'" type="button" class="btn btn-inverse" ng-click="timer('stop')">Pause</button>
   <button ng-if="boardState == 'paused'" type="button" class="btn btn-success" ng-click="timer('resume')">Resume</button>
   <button ng-if="boardState == 'paused' || boardState == 'playing'" type="button" class="btn btn-danger" ng-click="timer('end')">Quit</button>
@@ -57,12 +67,13 @@
     </div>
     <div class="modal-body">
       Here's what you missed:
-      <div class="country-list">
-        <ul ng-if="boardState == 'post'">
-          <li ng-repeat="country in (countries | filter: {found: 'false'})">
-            <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">
-              {{country.name}}
-            </a>
+      <div class="country-list" ng-if="boardState == 'lose'">
+        <span ng-repeat-start="continent in continents">
+          {{ continent }}:
+        </span>
+        <ul ng-repeat-end="">
+          <li ng-repeat="country in (countries | orderBy: 'name' | filter:{continent: continent, found: 'false'})">
+            <a href="http://en.wikipedia.org/wiki/{{ country.name }}" target="_blank">{{country.name}}</a>
           </li>
         </ul>
       </div>
