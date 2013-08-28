@@ -1,6 +1,6 @@
 <div class="logo">worldmap.io</div>
 <svg height="442" width="863" viewbox="83 46 2529 1428" ng-mousemove="moveLens($event)">
-  <g transform="scale(1)">
+  <g id="world" transform="scale(1)">
     <g ng-repeat="country in countries">
       <g ng-attr-id="{{ country.id }}" ng-attr-name="{{ country.name }}" ng-attr-transform="{{ country.transform }}">
         <g ng-repeat="path in country.paths">
@@ -66,7 +66,14 @@
       <h3>Game over!</h3>
     </div>
     <div class="modal-body">
-      Here's what you missed:
+      <h4>
+        You found
+        <ng-pluralize count="(countries | filter: {found: true}).length" when="{'0': 'no countries. ',
+                    'one': 'only one country. ',
+                    'other':'{} countries, '}">
+        </ng-pluralize>
+        Here's what you missed:
+      </h4>
       <div class="country-list" ng-if="boardState == 'lose'">
         <span ng-repeat-start="continent in continents">
           {{ continent }}:
