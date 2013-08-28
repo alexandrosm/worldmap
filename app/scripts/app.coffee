@@ -1,6 +1,12 @@
 'use strict'
 
-angular.module('worldmapApp', ['firebase','ngRoute', 'timer', 'ui.bootstrap', 'ui.keypress'])
+angular.module('worldmapApp', [
+    'firebase'
+    'ngRoute'
+    'timer'
+    'ui.bootstrap'
+    'ui.keypress'
+  ])
   .config ($routeProvider) ->
     $routeProvider
       .when '/',
