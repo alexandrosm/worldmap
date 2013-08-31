@@ -12,5 +12,8 @@ angular.module('worldmapApp', [
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
+      .when '/time/:duration',
+        templateUrl: 'views/main.html'
+        controller: 'MainCtrl'
       .otherwise
         redirectTo: '/'
