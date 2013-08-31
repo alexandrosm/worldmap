@@ -106,7 +106,7 @@
     {{ (countries  | filter:{continent: continent}).length }}
   </div>
   <div>
-    <timer autostart="false" interval="1000" countdown="900">
+    <timer autostart="false" interval="1000" countdown="duration">
       Time left: {{minutes}} minutes, {{seconds}} seconds
     </timer>
   </div>
