@@ -50,7 +50,7 @@
     {{ (countries  | filter:{continent: continent}).length }}
   </div>
   <div>
-    <timer autostart="false" interval="1000" countdown="900">
+    <timer autostart="false" interval="1000" countdown="duration">
       Time left: {{minutes}} minutes, {{seconds}} seconds
     </timer>
   </div>
@@ -86,7 +86,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
+      <button class="btn btn-warning cancel" ng-click="initBoard()" autofocus="">Close</button>
     </div>
   </div>
 
@@ -98,7 +98,7 @@
       You have found all the countries in the world!
     </div>
     <div class="modal-footer">
-      <button class="btn btn-warning cancel" ng-click="initBoard()">Close</button>
+      <button class="btn btn-warning cancel" ng-click="initBoard()" autofocus="">Close</button>
     </div>
   </div>
 
