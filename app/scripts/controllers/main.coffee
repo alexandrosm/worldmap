@@ -1,5 +1,8 @@
 angular.module('worldmapApp')
-  .controller 'MainCtrl', ($scope, angularFire, $q, $http) ->
+  .controller 'MainCtrl', ($log, $scope, angularFire, $q, $http, $routeParams) ->
+
+    $scope.duration = $routeParams.duration || 900
+
     firebaseUrl = 'https://worldmap.firebaseio.com/countryhits'
     promises = [
       $http.get('/data/countries.json')
